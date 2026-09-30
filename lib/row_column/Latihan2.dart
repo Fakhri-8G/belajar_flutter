@@ -7,24 +7,27 @@ class Latihan2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 200,
+        width: 250,
         height: 200,
+        margin: EdgeInsets.all(10),
         color: Colors.green,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                  Text("Nama:Fakhri"),
-                  Text("NIS:12345"),
-                  Text("Kelas:XII RPL 1"),
+                  Text("Nama: Fakhri"),
+                  Text("NIS: 12345"),
+                  Text("Kelas: XII RPL 1"),
               ],
             ),
             Row(children: [
                 Container(
                   width: 100,
                   height: 100,
+                  margin: EdgeInsets.only(left: 10),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(

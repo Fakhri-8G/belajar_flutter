@@ -10,14 +10,14 @@ class LatihanContainer extends StatelessWidget {
       width: 300,
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.all(20),
-      alignment: Alignment.topCenter,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.greenAccent[400],
         border: Border.all(
           color: Colors.green,
           width: 2,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
       ),
         // child: Text("SMK ASSALAAM BANDUNG",
         //   style: TextStyle(
@@ -29,8 +29,6 @@ class LatihanContainer extends StatelessWidget {
       child: Container(
         height: 60,
         width: 200,
-        padding: EdgeInsets.all(50),
-        margin: EdgeInsets.all(50),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.amberAccent,

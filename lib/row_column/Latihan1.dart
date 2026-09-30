@@ -9,12 +9,14 @@ class Latihan1 extends StatelessWidget {
       child: Container(
         width: 200,
         height: 200,
+        padding: EdgeInsets.all(10),
         color: Colors.grey,
         child: Column(
           children: [
             Container(
               width: 100,
               height: 100,
+              margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
@@ -22,13 +24,15 @@ class Latihan1 extends StatelessWidget {
                 ),
                 fit: BoxFit.fill,
               ),
+              borderRadius: BorderRadius.circular(5)
               ),            
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Nama:"),
-                Text("NIS:"),
-                Text("Kelas:"),
+                Text("Nama: Fakhri"),
+                Text("NIS: 12345"),
+                Text("Kelas: XII RPL"),
               ],
             ),
           ]
