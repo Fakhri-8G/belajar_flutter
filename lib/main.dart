@@ -1,4 +1,5 @@
 import 'package:belajar_flutter/container/LatihanContainer.dart';
+import 'package:belajar_flutter/list/list-screen.dart';
 import 'package:belajar_flutter/row_column/ColumnWidget.dart';
 import 'package:belajar_flutter/row_column/Latihan1.dart';
 import 'package:belajar_flutter/row_column/Latihan2.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.amber,
         centerTitle: true,
        ),
-       body: Latihan2(),
+       body: ListScreen(),
       ),
     );
   }
