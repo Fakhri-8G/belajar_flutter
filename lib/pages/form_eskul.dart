@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:belajar_flutter/helpers/size_helper.dart';
 import 'package:belajar_flutter/pages/output.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class FormEskul extends StatefulWidget {
@@ -18,7 +19,14 @@ class _FormEskulState extends State<FormEskul> {
   TextEditingController emailController = TextEditingController();
   TextEditingController daftarController = TextEditingController();
 
-  String _eskul = "";
+  final List<String> eskul = [
+    "Badminton",
+    "Voli",
+    "Basket",
+    "Futsal",
+  ];
+
+  final List<String> _eskulDipilih = [];
   String? _eskulError;
   String _pilihKelas = "";
 
@@ -86,6 +94,7 @@ class _FormEskulState extends State<FormEskul> {
                       TextFormField(
                         controller: tlpController,
                         keyboardType: TextInputType.phone,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         decoration: InputDecoration(
                           hintText: "No. Telepon",
                           border: OutlineInputBorder(),
@@ -107,6 +116,9 @@ class _FormEskulState extends State<FormEskul> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) return 'Input Email';
+                          if (!value.contains('@') || !value.contains('.')) {
+                            return 'Format Email Salah';
+                          }
                           return null;
                         },
                       ),
@@ -117,7 +129,7 @@ class _FormEskulState extends State<FormEskul> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Jenis Kelamin",
+                          "Ekstrakurikuler (pilih 1-2)",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -125,47 +137,31 @@ class _FormEskulState extends State<FormEskul> {
                         ),
                       ),
 
-                      Row(
-                        children: [
-                          Radio<String>(
-                            value: "Badminton",
-                            groupValue: _eskul,
-                            onChanged: (value) {
-                              setState(() {
-                                _eskul = value!;
-                                _eskulError = null;
-                              });
-                            },
-                          ),
-                          Text("Badminton"),
-                          SizedBox(width: 24),
+                      ...eskul.map((item) {
+                        final dipilih = _eskulDipilih.contains(item);
 
-                          Radio<String>(
-                            value: "Voli",
-                            groupValue: _eskul,
-                            onChanged: (value) {
-                              setState(() {
-                                _eskul = value!;
-                                _eskulError = null;
-                              });
-                            },
-                          ),
-                          Text("Voli"),
-                          SizedBox(width: 24),
-
-                          Radio<String>(
-                            value: "Futsal",
-                            groupValue: _eskul,
-                            onChanged: (value) {
-                              setState(() {
-                                _eskul = value!;
-                                _eskulError = null;
-                              });
-                            },
-                          ),
-                          Text("Futsal"),
-                        ],
-                      ),
+                        return CheckboxListTile(
+                          title: Text(item),
+                          value: dipilih,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          contentPadding: EdgeInsets.zero,
+                          onChanged: (value) {
+                            setState(() {
+                              if (value == true) {
+                                if (_eskulDipilih.length < 2) {
+                                  _eskulDipilih.add(item);
+                                  _eskulError = null;
+                                } else {
+                                  _eskulError =
+                                      'Maksimal 2 eskul';
+                                }
+                              } else {
+                                _eskulDipilih.remove(item);
+                              }
+                            }); 
+                          },
+                        );
+                      }),
 
                       if (_eskulError != null)
                         Padding(
@@ -270,20 +266,22 @@ class _FormEskulState extends State<FormEskul> {
   void _submit() {
     final isValid = _formKey.currentState!.validate();
 
-    if (_eskul.isEmpty) {
-      setState(() => _eskulError = 'Pilih Jenis Kelamin');
+    if (_eskulDipilih.isEmpty) {
+      setState(() => _eskulError = 'Pilih Minimal 1 Ekskul');
     }
 
-    if (!isValid || _eskul.isEmpty) return;
+    if (!isValid || _eskulDipilih.isEmpty) return;
 
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => OutputForm(
           nama: namaController.text,
-          eskul: _eskul,
-          tglDaftar: daftarController.text,
+          telp: tlpController.text,
+          email: emailController.text,
           kelas: _pilihKelas,
+          eskul: _eskulDipilih,
+          tglDaftar: daftarController.text,
         ),
       ),
     );

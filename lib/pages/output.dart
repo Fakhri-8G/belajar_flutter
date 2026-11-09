@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class OutputForm extends StatelessWidget {
-  final String nama, eskul, tglDaftar, kelas;
+  final String nama, email, telp, tglDaftar, kelas;
+  final List<String> eskul;
 
   OutputForm({
     Key? key,
     required this.nama,
     required this.eskul,
+    required this.email,
+    required this.telp,
     required this.tglDaftar,
     required this.kelas,
   }) : super(key: key);
@@ -29,9 +32,11 @@ class OutputForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _textWidget("Nama", nama),
-                _textWidget("Jenis Kelamin", eskul),
-                _textWidget("Tanggal Lahir", tglDaftar),
-                _textWidget("Agama", kelas),
+                _textWidget("Email", email),
+                _textWidget("Telepon", telp),
+                _textWidget("Kelas", kelas),
+                _textWidget("Ekskul", eskul.join(", ")),
+                _textWidget("Tanggal Daftar", tglDaftar),
               ],
             ),
           ),
