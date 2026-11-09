@@ -1,3 +1,4 @@
+import 'package:belajar_flutter/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:belajar_flutter/list/detailScreen.dart';
 
@@ -63,6 +64,12 @@ class ListScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }, 
+                  child: Text("Kembali")
+                ),
                 Container(
                   width: 100,
                   decoration: BoxDecoration(
