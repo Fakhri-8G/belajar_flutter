@@ -124,6 +124,13 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 5),
 
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/index-page');
+              }, 
+              child: Text('Masuk Tugas Kasir'),
+            ),
+            const SizedBox(height: 5),
 
           ],
         ),

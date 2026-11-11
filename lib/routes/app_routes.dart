@@ -1,4 +1,5 @@
 import 'package:belajar_flutter/form/form_page.dart';
+import 'package:belajar_flutter/kasir/index.dart';
 import 'package:belajar_flutter/list/detailScreen.dart';
 import 'package:belajar_flutter/list/grid.dart';
 import 'package:belajar_flutter/list/instagram.dart';
@@ -30,6 +31,7 @@ class AppRoutes {
   static const formPage = '/form-page';
   static const inputPage = '/input-page';
   static const eskulPage = '/form-eskul-page';
+  static const kasirIndexPage = '/index-page';
   // static const  = '/';
   static const about = '/about';
 
@@ -48,6 +50,7 @@ class AppRoutes {
     formPage: (context) => FormPage(),
     inputPage: (context) => BelajarForm(),
     eskulPage: (context) => FormEskul(),
+    kasirIndexPage: (context) => KasirIndexPage(),
     about: (context) => AboutPage(),
   };
 }

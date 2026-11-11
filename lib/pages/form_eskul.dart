@@ -32,10 +32,10 @@ class _FormEskulState extends State<FormEskul> {
 
   final List<String> kelas = [
     "X RPL 1",
-    "X RPL 2",
     "XI RPL 1",
-    "XI RPL 2",
     "XII RPL 1",
+    "X RPL 2",
+    "XI RPL 2",
   ];
 
   @override
@@ -161,7 +161,7 @@ class _FormEskulState extends State<FormEskul> {
                             }); 
                           },
                         );
-                      }),
+                      }), 
 
                       if (_eskulError != null)
                         Padding(
