@@ -20,29 +20,29 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/about');
-              }, 
-              child: Text('Masuk About'),
-            ),
-            const SizedBox(height: 5),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/about');
+            //   }, 
+            //   child: Text('Masuk About'),
+            // ),
+            // const SizedBox(height: 5),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/list-screen');
-              }, 
-              child: Text('Masuk List Screen'),
-            ),
-            const SizedBox(height: 5),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/list-screen');
+            //   }, 
+            //   child: Text('Masuk List Screen'),
+            // ),
+            // const SizedBox(height: 5),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/detail-screen');
-              }, 
-              child: Text('Masuk Detail Produk || Error'),
-            ),
-            const SizedBox(height: 5),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/detail-screen');
+            //   }, 
+            //   child: Text('Masuk Detail Produk || Error'),
+            // ),
+            // const SizedBox(height: 5),
 
             ElevatedButton(
               onPressed: () {
@@ -129,6 +129,30 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/index-page');
               }, 
               child: Text('Masuk Tugas Kasir'),
+            ),
+            const SizedBox(height: 5),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/fetch-api-page');
+              }, 
+              child: Text('Masuk Fetch API'),
+            ),
+            const SizedBox(height: 5),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/post-api-page');
+              },
+              child: Text('Masuk Post API'),
+            ),
+            const SizedBox(height: 5),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/comment-api-page');
+              },
+              child: Text('Masuk Comment API'),
             ),
             const SizedBox(height: 5),
 

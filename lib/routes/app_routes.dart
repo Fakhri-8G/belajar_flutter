@@ -3,8 +3,11 @@ import 'package:belajar_flutter/kasir/index.dart';
 import 'package:belajar_flutter/list/detailScreen.dart';
 import 'package:belajar_flutter/list/grid.dart';
 import 'package:belajar_flutter/list/instagram.dart';
+import 'package:belajar_flutter/pages/comment_page.dart';
+import 'package:belajar_flutter/pages/fetch_api_page.dart';
 import 'package:belajar_flutter/pages/form_eskul.dart';
 import 'package:belajar_flutter/pages/input_form.dart';
+import 'package:belajar_flutter/pages/post_page.dart';
 import 'package:belajar_flutter/row_column/ColumnWidget.dart';
 import 'package:belajar_flutter/row_column/Latihan1.dart';
 import 'package:belajar_flutter/row_column/Latihan2.dart';
@@ -32,6 +35,9 @@ class AppRoutes {
   static const inputPage = '/input-page';
   static const eskulPage = '/form-eskul-page';
   static const kasirIndexPage = '/index-page';
+  static const fetchApiPage = '/fetch-api-page';
+  static const postApiPage = '/post-api-page';
+  static const commentApiPage = '/comment-api-page';
   // static const  = '/';
   static const about = '/about';
 
@@ -51,6 +57,9 @@ class AppRoutes {
     inputPage: (context) => BelajarForm(),
     eskulPage: (context) => FormEskul(),
     kasirIndexPage: (context) => KasirIndexPage(),
+    fetchApiPage: (context) => AlbumPage(),
+    postApiPage: (context) => PostPage(),
+    commentApiPage: (context) => CommentPage(),
     about: (context) => AboutPage(),
   };
 }
