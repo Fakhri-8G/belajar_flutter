@@ -1,162 +1,76 @@
 import 'package:flutter/material.dart';
+import '../models/user_model.dart';
+import '../services/auth_service.dart';
+import 'login_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _auth = AuthService();
+  late Future<UserModel> _futureUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _futureUser = _auth.getUser();
+  }
+
+  Future<void> _logout() async {
+    await _auth.logout();
+    if (!mounted) return;
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginPage()),
+      (_) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home'),
+        actions: [
+          IconButton(onPressed: _logout, icon: const Icon(Icons.logout)),
+        ],
       ),
       body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/form-page');
-              }, 
-              child: Text('Masuk Form Date Picker'),
-            ),
-            const SizedBox(height: 5),
-            
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/about');
-            //   }, 
-            //   child: Text('Masuk About'),
-            // ),
-            // const SizedBox(height: 5),
-
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/list-screen');
-            //   }, 
-            //   child: Text('Masuk List Screen'),
-            // ),
-            // const SizedBox(height: 5),
-
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.pushNamed(context, '/detail-screen');
-            //   }, 
-            //   child: Text('Masuk Detail Produk || Error'),
-            // ),
-            // const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/grid');
-              }, 
-              child: Text('Masuk Grid'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/instagram');
-              }, 
-              child: Text('Masuk Instagram'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/column-widget');
-              }, 
-              child: Text('Masuk Column Widget'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/latihan1');
-              }, 
-              child: Text('Masuk Latihan 1'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/latihan2');
-              }, 
-              child: Text('Masuk Latihan 2'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/row-column-widget');
-              }, 
-              child: Text('Masuk Row Column Widget'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/row-widget');
-              }, 
-              child: Text('Masuk Row Widget'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/form');
-              }, 
-              child: Text('Masuk Form'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/input-page');
-              }, 
-              child: Text('Masuk Form Input dan Output'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/form-eskul-page');
-              }, 
-              child: Text('Masuk Form Ekstrakulikuler'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/index-page');
-              }, 
-              child: Text('Masuk Tugas Kasir'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/fetch-api-page');
-              }, 
-              child: Text('Masuk Fetch API'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/post-api-page');
-              },
-              child: Text('Masuk Post API'),
-            ),
-            const SizedBox(height: 5),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/comment-api-page');
-              },
-              child: Text('Masuk Comment API'),
-            ),
-            const SizedBox(height: 5),
-
-          ],
+        child: FutureBuilder<UserModel>(
+          future: _futureUser,
+          builder: (context, snap) {
+            if (snap.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            if (snap.hasError) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(snap.error.toString()),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: _logout,
+                    child: const Text('Kembali ke Login'),
+                  ),
+                ],
+              );
+            }
+            final user = snap.data!;
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Halo, ${user.name}',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                Text(user.email),
+              ],
+            );
+          },
         ),
       ),
     );

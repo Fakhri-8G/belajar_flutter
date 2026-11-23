@@ -1,50 +1,50 @@
-import 'dart:async';
-import 'dart:convert';
+// import 'dart:async';
+// import 'dart:convert';
 
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
-import '../constants/api_constants.dart';
-import '../models/post.dart';
-import '../models/comment.dart';
+// import '../constants/api_constants.dart';
+// import '../models/post.dart';
+// import '../models/comment.dart';
 
-class ApiService {
-  Future<List<Post>> fetchPosts() async {
-    final url = Uri.parse(
-      '${ApiConstants.baseUrl}${ApiConstants.postsEndpoint}',
-    );
+// class ApiService {
+//   Future<List<Post>> fetchPosts() async {
+//     final url = Uri.parse(
+//       '${ApiConstants.baseUrl}${ApiConstants.postsEndpoint}',
+//     );
 
-    try {
-      final response = await http.get(url).timeout(const Duration(seconds: 10));
+//     try {
+//       final response = await http.get(url).timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200) {
-        final List data = jsonDecode(response.body);
+//       if (response.statusCode == 200) {
+//         final List data = jsonDecode(response.body);
 
-        return data.map((e) => Post.fromJson(e)).toList();
-      } else {
-        throw Exception('Gagal memuat data (kode: ${response.statusCode})');
-      }
-    } on TimeoutException {
-      throw Exception('Koneksi terlalu lama. Coba lagi.');
-    }
-  }
+//         return data.map((e) => Post.fromJson(e)).toList();
+//       } else {
+//         throw Exception('Gagal memuat data (kode: ${response.statusCode})');
+//       }
+//     } on TimeoutException {
+//       throw Exception('Koneksi terlalu lama. Coba lagi.');
+//     }
+//   }
   
-  Future<List<Comment>> fetchComments() async {
-    final url = Uri.parse(
-      '${ApiConstants.baseUrl}${ApiConstants.commentsEndpoint}',
-    );
+//   Future<List<Comment>> fetchComments() async {
+//     final url = Uri.parse(
+//       '${ApiConstants.baseUrl}${ApiConstants.commentsEndpoint}',
+//     );
 
-    try {
-      final response = await http.get(url).timeout(const Duration(seconds: 10));
+//     try {
+//       final response = await http.get(url).timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200) {
-        final List data = jsonDecode(response.body);
+//       if (response.statusCode == 200) {
+//         final List data = jsonDecode(response.body);
 
-        return data.map((e) => Comment.fromJson(e)).toList();
-      } else {
-        throw Exception('Gagal memuat data (kode: ${response.statusCode})');
-      }
-    } on TimeoutException {
-      throw Exception('Koneksi terlalu lama. Coba lagi.');
-    }
-  }
-}
+//         return data.map((e) => Comment.fromJson(e)).toList();
+//       } else {
+//         throw Exception('Gagal memuat data (kode: ${response.statusCode})');
+//       }
+//     } on TimeoutException {
+//       throw Exception('Koneksi terlalu lama. Coba lagi.');
+//     }
+//   }
+// }
