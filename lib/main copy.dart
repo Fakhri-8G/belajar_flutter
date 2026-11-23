@@ -25,14 +25,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: AppRoutes.routes,
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //   title: Text("Flutter App"),
-      //   backgroundColor: Colors.amber,
-      //   centerTitle: true,
-      //  ),
-      //  body: NavigationWidget(),
-      // ),
     );
   }
 }
